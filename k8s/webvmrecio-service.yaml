@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-vmrecio
+  labels:
+    app: web-vmrecio
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+  selector:
+    app: web-vmrecio

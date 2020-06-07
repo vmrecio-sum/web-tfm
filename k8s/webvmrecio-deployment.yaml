@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-vmrecio
+  labels:
+    app: web-vmrecio
+spec:
+  replicas: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+     app: web-vmrecio
+  template:
+    metadata:
+      labels:
+        app: web-vmrecio
+    spec:
+      containers:
+      - name: flask
+        image: vmreciosum/web_tfm:latest
+        ports:
+        - containerPort: 80
+          protocol: TCP 
