@@ -3,8 +3,8 @@ services:
   apache:
     build:
       context: .
-      dockerfile: docker/apache/Dockerfile
-    container_name: apache
+      dockerfile: ./Dockerfile_Web
+    container_name: apache_webvmrecio
     ports:
       - "8183:80"
     volumes:
