@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/vmrecio-sum/web-tfm.git'
+        git branch: 'develop', url: 'https://github.com/vmrecio-sum/web-tfm.git'
       }
     }
     stage('Building image') {
