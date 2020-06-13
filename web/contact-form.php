@@ -1,11 +1,8 @@
 <?php
 
-// require 'PHPMailer/PHPMailerAutoload.php';
-
 require 'PHPMailer/class.phpmailer.php';
 ini_set('memory_limit', '256M');
 error_reporting(E_ALL);
-// ini_set('display_errors', true);
 setlocale(LC_ALL,"es_ES");
 
 session_start();
