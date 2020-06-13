@@ -24,7 +24,9 @@ pipeline {
                 }
             }
         }
+    steps{
         sh "sleep 10"
+      }
     }
     stage("SonarQube Quality Gate") { 
     steps {
