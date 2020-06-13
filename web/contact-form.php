@@ -15,10 +15,10 @@ if ($_SESSION['answer'] == $_POST['answer'] ) {
     $fromName = 'Web Victor M. Recio';
     $sendToEmail = 'victor.m.recio83@gmail.com';
     $subject = 'Nuevo Mensaje Formulario de Contacto';
-    $fields = array('name' => 'Nombre', 'surname' => 'Apellidos', 'phone' => 'Teléfono', 'email' => 'Email', 'message' => 'Mensaje')
+    $fields = array('name' => 'Nombre', 'surname' => 'Apellidos', 'phone' => 'Teléfono', 'email' => 'Email', 'message' => 'Mensaje');
 
 
-    $okMessage = 'Formulario de contacto enviado correctamente. Gracias, Te responderé lo más pronto que me sea posible!
+    $okMessage = 'Formulario de contacto enviado correctamente. Gracias, Te responderé lo más pronto que me sea posible!';
     $errorMessage = 'Hay algún tipo de Error al mandar el formulario de contacto. Por favor, inténtalo más tarde';
 
     // if you are not debugging and don't need error reporting, turn this off by error_reporting(0);
