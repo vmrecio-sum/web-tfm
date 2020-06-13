@@ -58,6 +58,8 @@ else {
 
 function sendmail($email, $subject, $body) {
 
+    $fromEmail = 'reports.sum@gmail.com';
+
     $mail = new PHPMailer(true);
     $mail->IsSMTP();
     try {
@@ -65,13 +67,13 @@ function sendmail($email, $subject, $body) {
         $mail->SMTPSecure = 'ssl';
         $mail->Host = 'smtp.gmail.com';
         $mail->Port = '465';
-        $mail->Username = 'reports.sum@gmail.com';
+        $mail->Username = $fromEmail;
         $mail->Password = 'wUOj5LePRWijlGYnJr07';
-        $mail->AddReplyTo('reports.sum@gmail.com', '');
+        $mail->AddReplyTo($fromEmail, '');
 
         $mail->AddAddress($email);
 
-        $mail->SetFrom('reports.sum@gmail.com', '');
+        $mail->SetFrom($fromEmail, '');
         $mail->Subject = $subject;
         $mail->MsgHTML($body);
         return $mail->Send();
