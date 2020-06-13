@@ -573,10 +573,10 @@ if( mt_rand(0,1) === 1 ) {
             <img src="img/phonehouse.png" alt="">
             <img src="img/roche.png" alt="">  
         </div>
-    </section>
+    </section
    <!-- End Client section -->
 
-   <!-- Start Education section -->
+   !-- Start Education section -->
    <section class="col-md-9 col-sm-12 col-xs-12 col-md-offset-3 rzm_experience" id="education">
       <h1 class="title">Estudios Relevantes </h1>
       <div id="rzm_timeline">
