@@ -23,10 +23,8 @@ pipeline {
             -Dsonar.login=00afcffbddc861aa0d3e27e067ad36e36c4bb138"
                 }
             }
+            sh "sleep 10"
         }
-    steps{
-        sh "sleep 10"
-      }
     }
     stage("SonarQube Quality Gate") { 
     steps {
