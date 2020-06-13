@@ -19,9 +19,8 @@ pipeline {
             sh "${tool("SonarqubeLocal")}/bin/sonar-scanner \
             -Dsonar.projectKey=web-vmrecio-tfm \
             -Dsonar.sources=. \
-            -Dsonar.css.node=. \
             -Dsonar.host.url=http://51.68.7.93:9100 \
-            -Dsonar.login= 00afcffbddc861aa0d3e27e067ad36e36c4bb138"
+            -Dsonar.login=00afcffbddc861aa0d3e27e067ad36e36c4bb138"
                 }
             }
         }
