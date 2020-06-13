@@ -14,23 +14,16 @@ if ($_SESSION['answer'] == $_POST['answer'] ) {
     $subject = 'Nuevo Mensaje Formulario de Contacto';
     $fields = array('name' => 'Nombre', 'surname' => 'Apellidos', 'phone' => 'Teléfono', 'email' => 'Email', 'message' => 'Mensaje');
 
-
     $okMessage = 'Formulario de contacto enviado correctamente. Gracias, Te responderé lo más pronto que me sea posible!';
     $errorMessage = 'Hay algún tipo de Error al mandar el formulario de contacto. Por favor, inténtalo más tarde';
 
-    // if you are not debugging and don't need error reporting, turn this off by error_reporting(0);
-    error_reporting(E_ALL);
-
     try
     {
-        
-        // if(count($_POST) == 0) throw new \Exception('Form is empty');
         
         $emailTextHtml = "<h1>Tienes un nuevo Formulario de Contacto</h1><hr>";
         $emailTextHtml .= "<table>";
 
         foreach ($_POST as $key => $value) {
-            // If the field exists in the $fields array, include it in the email
             if (isset($fields[$key])) {
                 $emailTextHtml .= "<tr><th>$fields[$key]</th><td>$value</td></tr>";
             }
@@ -46,7 +39,6 @@ if ($_SESSION['answer'] == $_POST['answer'] ) {
     }
     catch (\Exception $e)
     {
-        // $responseArray = array('type' => 'danger', 'message' => $errorMessage);
         $responseArray = array('type' => 'danger', 'message' => $e->getMessage());
     }
 
@@ -55,7 +47,6 @@ else {
     $responseArray = array('type' => 'danger', 'message' => 'Captcha Incorrecto.');
 }
 
-// if requested by AJAX request return JSON response
 if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
     $encoded = json_encode($responseArray);
     
@@ -63,7 +54,6 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
     
     echo $encoded;
 }
-// else just display the message
 else {
     echo $responseArray['message'];
 }
