@@ -536,14 +536,13 @@ if( mt_rand(0,1) === 1 ) {
     <section class="col-md-9 col-sm-12 col-xs-12 col-md-offset-3 rzm_client" id="client">
     	<h1 class="title">Clientes</h1>
         <p>He tenido la suerte de trabajar con grandes empresas de diversos sectores, participando en su modelo de negocio de TeleMarketing y venta Online.<br><br>
-        Dentro del <b>Sector de las Telecomunicaciones</b> empresas como Telefónica, Vodafone, France Telecom (Orange y Jazztel), Grupo MasMovil y The Phone House.<br><br>
-        En el <b>Sector Asegurador</b> empresas como Adeslas, Sanitas, Mapfre, Aegon y Metlife. Dentro del <b>Sector Energético</b> empresas como Endesa, Naturgi, EDP y Repsol.<br><br>
-        Tambien en el <b>Sector Farmaceutico</b> he trabajado para Alter España, Bayer, Indas y Roche. sin olvidar también el <b>Sector Bancario</b>, trabajando para Empresas como Bankia y El Banco Santander.<br><br>
-        Y por último he colaborado en diversos proyectos para <b>Consultoras</b> como Indra, Accenture y Everis.
+        Dentro del <strong>Sector de las Telecomunicaciones</strong> empresas como Telefónica, Vodafone, France Telecom (Orange y Jazztel), Grupo MasMovil y The Phone House.<br><br>
+        En el <strong>Sector Asegurador</strong> empresas como Adeslas, Sanitas, Mapfre, Aegon y Metlife. Dentro del <strong>Sector Energético</strong> empresas como Endesa, Naturgi, EDP y Repsol.<br><br>
+        Tambien en el <strong>Sector Farmaceutico</strong> he trabajado para Alter España, Bayer, Indas y Roche. sin olvidar también el <strong>Sector Bancario</strong>, trabajando para Empresas como Bankia y El Banco Santander.<br><br>
+        Y por último he colaborado en diversos proyectos para <strong>Consultoras</strong> como Indra, Accenture y Everis.
         </p>
         <small>Todo ello sin olvidar la infinidad de proyecto de caracter Interno en los que he participado dentro de las empresas en las que he trabajado.</small>
-        <div class="rzm_client_img">
-            <center>
+        <div class="rzm_client_img" style="text-align: center;">
         	<img src="img/endesa.jpg" alt="">
             <img src="img/BancoSantander.jpg" alt="">
             <img src="img/Adeslas.png" alt="">
@@ -573,7 +572,6 @@ if( mt_rand(0,1) === 1 ) {
             <img src="img/indralogo.png" alt="">
             <img src="img/phonehouse.png" alt="">
             <img src="img/roche.png" alt="">  
-            </center> 
         </div>
     </section>
    <!-- End Client section -->
