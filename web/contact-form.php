@@ -8,8 +8,6 @@ setlocale(LC_ALL,"es_ES");
 session_start();
 if ($_SESSION['answer'] == $_POST['answer'] ) {
 
-    $fromEmail = 'reports.sum@gmail.com';
-    $fromName = 'Web Victor M. Recio';
     $sendToEmail = 'victor.m.recio83@gmail.com';
     $subject = 'Nuevo Mensaje Formulario de Contacto';
     $fields = array('name' => 'Nombre', 'surname' => 'Apellidos', 'phone' => 'Teléfono', 'email' => 'Email', 'message' => 'Mensaje');
