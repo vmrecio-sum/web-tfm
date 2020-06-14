@@ -1,6 +1,7 @@
 <?php
 
 require 'PHPMailer/class.phpmailer.php';
+include('include/credenciales.php');
 ini_set('memory_limit', '256M');
 error_reporting(E_ALL);
 setlocale(LC_ALL,"es_ES");
@@ -58,7 +59,7 @@ else {
 
 function sendmail($email, $subject, $body) {
 
-    $fromEmail = 'reports.sum@gmail.com';
+    global $fromEmail,$fromEmailPass;
 
     $mail = new PHPMailer(true);
     $mail->IsSMTP();
@@ -68,7 +69,7 @@ function sendmail($email, $subject, $body) {
         $mail->Host = 'smtp.gmail.com';
         $mail->Port = '465';
         $mail->Username = $fromEmail;
-        $mail->Password = 'wUOj5LePRWijlGYnJr07';
+        $mail->Password = $fromEmailPass;
         $mail->AddReplyTo($fromEmail, '');
 
         $mail->AddAddress($email);
