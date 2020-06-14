@@ -22,26 +22,26 @@ pipeline {
             -Dsonar.host.url=http://51.68.7.93:9100 \
             -Dsonar.login=00afcffbddc861aa0d3e27e067ad36e36c4bb138"
                 }
-            }
-          Integer waitSeconds = 10
-          Integer timeOutMinutes = 10
-          Integer maxRetry = (timeOutMinutes * 60) / waitSeconds as Integer
-          for (Integer i = 0; i < maxRetry; i++) {
-            try {
-              timeout(time: waitSeconds, unit: 'SECONDS') {
-                def qg = waitForQualityGate()
-                if (qg.status != 'OK') {
-                  error "Sonar quality gate status: ${qg.status}"
-                } else {
-                  i = maxRetry
+            Integer waitSeconds = 10
+            Integer timeOutMinutes = 10
+            Integer maxRetry = (timeOutMinutes * 60) / waitSeconds as Integer
+            for (Integer i = 0; i < maxRetry; i++) {
+              try {
+                timeout(time: waitSeconds, unit: 'SECONDS') {
+                  def qg = waitForQualityGate()
+                  if (qg.status != 'OK') {
+                    error "Sonar quality gate status: ${qg.status}"
+                  } else {
+                    i = maxRetry
+                  }
+                }
+              } catch (Throwable e) {
+                if (i == maxRetry - 1) {
+                  throw e
                 }
               }
-            } catch (Throwable e) {
-              if (i == maxRetry - 1) {
-                throw e
-              }
             }
-          }
+            }
         }
     }
     stage('Building image') {
