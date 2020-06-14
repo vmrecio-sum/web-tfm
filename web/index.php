@@ -22,7 +22,7 @@ if( mt_rand(0,1) === 1 ) {
 
 <head>
 
-<!-- Basic Page Needs
+!-- Basic Page Needs
   ================================================== -->
 <meta charset="utf-8">
 <title>CV - Victor Manuel Recio</title>
