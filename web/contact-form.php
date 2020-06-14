@@ -12,7 +12,7 @@ if ($_SESSION['answer'] == $_POST['answer'] ) {
     $subject = 'Nuevo Mensaje Formulario de Contacto';
     $fields = array('name' => 'Nombre', 'surname' => 'Apellidos', 'phone' => 'Teléfono', 'email' => 'Email', 'message' => 'Mensaje');
 
-    $okMessage = 'Formulario de contacto enviado correctamente. Gracias, Te responderé lo más pronto que me sea posible!';
+    $okMessage = 'Formulario de contacto enviado correctamente. Gracias, Te responderé lo más pronto que me sea posible!
     $errorMessage = 'Hay algún tipo de Error al mandar el formulario de contacto. Por favor, inténtalo más tarde';
 
     try
