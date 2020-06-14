@@ -86,7 +86,7 @@ if( mt_rand(0,1) === 1 ) {
                     <li><a href="#client">Clientes</a></li>
                     <li><a href="#education">Educación</a></li>
                     <li><a href="#testimonial">Recomendaciones</a></li>
-                    <li><a class="contact-form" href="#contact">Contacto</a></li>
+                    <li><a class="contact-form" href="#contact">Contacto</a></li
                     
                   </ul>
              </div>
