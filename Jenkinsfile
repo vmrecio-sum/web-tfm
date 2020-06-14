@@ -28,11 +28,22 @@ pipeline {
     stage('Sonar:QG') {
           steps {
               sleep(20)  /* Added 10 sec sleep that was suggested in few places*/
-              script {
-                  withSonarQubeEnv("Sonarqube-Local") {
-                  sh './gradlew sonarqube'
+              script{
+                  def tries = 0
+                  sonarResultStatus = "PENDING"
+                  while ((sonarResultStatus == "PENDING" || sonarResultStatus == "IN_PROGRESS") && tries++ < 5) {
+                      try {
+                          sonarResult = waitForQualityGate abortPipeline: true
+                          sonarResultStatus = sonarResult.status
+                      } catch(ex) {
+                          echo "caught exception ${ex}"
                       }
+                      echo "waitForQualityGate status is ${sonarResultStatus} (tries=${tries})"
                   }
+                  if (sonarResultStatus != 'OK') {
+                      error "Quality gate failure for SonarQube: ${sonarResultStatus}"
+                  }
+              }
           }
       }
     stage('Building image') {
