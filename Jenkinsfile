@@ -33,7 +33,7 @@ pipeline {
                   sonarResultStatus = "PENDING"
                   while ((sonarResultStatus == "PENDING" || sonarResultStatus == "IN_PROGRESS") && tries++ < 30) {
                       try {
-                          sonarResult = waitForQualityGate abortPipeline: true
+                          sonarResult = waitForQualityGate(webhookSecretId: 'gL3hBtRtgpVfmItA7ZEq')    
                           sonarResultStatus = sonarResult.status
                       } catch(ex) {
                           echo "caught exception ${ex}"
