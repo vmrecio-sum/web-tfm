@@ -12,9 +12,8 @@ pipeline {
       }
     }
     stage('Code Quality Check via SonarQube') {
-    steps {
+      steps {
         script {
-        def scannerHome = tool 'SonarqubeLocal';
             withSonarQubeEnv("Sonarqube-Local") {
             sh "${tool("SonarqubeLocal")}/bin/sonar-scanner \
             -Dsonar.projectKey=web-vmrecio-tfm \
@@ -24,20 +23,16 @@ pipeline {
             -Dsonar.webhooks.project=http://51.68.7.93:9000/sonarqube-webhook/"
                 }
             }
-        }
+      }
     }
     stage('Sonar:QG') {
           steps {
-              sleep(30)  /* Added 10 sec sleep that was suggested in few places*/
-              script{
-                  timeout(time: 10, unit: 'MINUTES') {
-                      def qg = waitForQualityGate abortPipeline: true
-                      if (qg.status != 'OK') {
-                          echo "Status: ${qg.status}"
-                          error "Pipeline aborted due to quality gate failure: ${qg.status}"
+              sleep(20)  /* Added 10 sec sleep that was suggested in few places*/
+              script {
+                  withSonarQubeEnv("Sonarqube-Local") {
+                  sh './gradlew sonarqube'
                       }
                   }
-              }
           }
       }
     stage('Building image') {
