@@ -29,13 +29,15 @@ pipeline {
     stage('Sonar:QG') {
           steps {
             timeout(time: 40, unit: 'MINUTES') {
-                def qGate = waitForQualityGate()
-                if (qGate.status != 'OK') {
-                    error "Pipeline aborted due to quality gate failure: ${qGate.status}"
+                script {
+                  def qGate = waitForQualityGate()
+                  if (qGate.status != 'OK') {
+                      error "Pipeline aborted due to quality gate failure: ${qGate.status}"
+                  }
                 }
             }
           }
-      }
+    }
     stage('Building image') {
       steps{
         script {
