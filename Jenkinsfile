@@ -23,28 +23,23 @@ pipeline {
             -Dsonar.login=00afcffbddc861aa0d3e27e067ad36e36c4bb138 \
             -Dsonar.webhooks.project=http://51.68.7.93:9000/sonarqube-webhook/"
                 }
-            Integer waitSeconds = 10
-            Integer timeOutMinutes = 10
-            Integer maxRetry = (timeOutMinutes * 60) / waitSeconds as Integer
-            for (Integer i = 0; i < maxRetry; i++) {
-              try {
-                timeout(time: waitSeconds, unit: 'SECONDS') {
-                  def qg = waitForQualityGate()
-                  if (qg.status != 'OK') {
-                    error "Sonar quality gate status: ${qg.status}"
-                  } else {
-                    i = maxRetry
-                  }
-                }
-              } catch (Throwable e) {
-                if (i == maxRetry - 1) {
-                  throw e
-                }
-              }
-            }
             }
         }
     }
+    stage('Sonar:QG') {
+          steps {
+              **sleep(10)  /* Added 10 sec sleep that was suggested in few places*/**
+              script{
+                  timeout(time: 10, unit: 'MINUTES') {
+                      def qg = waitForQualityGate abortPipeline: true
+                      if (qg.status != 'OK') {
+                          echo "Status: ${qg.status}"
+                          error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                      }
+                  }
+              }
+          }
+      }
     stage('Building image') {
       steps{
         script {
