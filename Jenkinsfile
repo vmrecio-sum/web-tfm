@@ -31,7 +31,7 @@ pipeline {
               script{
                   def tries = 0
                   sonarResultStatus = "PENDING"
-                  while ((sonarResultStatus == "PENDING" || sonarResultStatus == "IN_PROGRESS") && tries++ < 5) {
+                  while ((sonarResultStatus == "PENDING" || sonarResultStatus == "IN_PROGRESS") && tries++ < 30) {
                       try {
                           sonarResult = waitForQualityGate abortPipeline: true
                           sonarResultStatus = sonarResult.status
