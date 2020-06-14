@@ -11,7 +11,7 @@ pipeline {
         git branch: 'develop', url: 'https://github.com/vmrecio-sum/web-tfm.git'
       }
     }
-    stage('Code Quality Check via SonarQube') {
+    stage('Code Quality Check SonarQube') {
       steps {
         script {
             withSonarQubeEnv("Sonarqube-Local") {
@@ -25,7 +25,7 @@ pipeline {
             }
       }
     }
-    stage('Sonar:QG') {
+    stage('QualityGate SonarQube') {
           steps {
               sleep(20)  /* Added 10 sec sleep that was suggested in few places*/
               script{
