@@ -78,20 +78,16 @@ pipeline {
           //sh 'chmod +x ./kubectl && mv kubectl /usr/local/sbin'
           sh 'chmod +x ./kubectl'
           sh 'echo $KUBECONFIG_DATA > configkube'
-          withCredentials([file(credentialsId: 'kubeconfig', variable: 'mySecretFile')]) {
-              // some block can be a groovy block as well and the variable will be available to the groovy script
-              sh '''
-                  echo "This is the directory of the secret file $mySecretFile"
-                  echo "This is the content of the file `cat $mySecretFile`"
-                '''
-          }
         }
       }
     }    
     stage('Production-k8s') {
       steps {
         script {
-          sh './kubectl --kubeconfig ./k8s/configkube get services'
+          withCredentials([file(credentialsId: 'kubeconfig', variable: 'mySecretFile')]) {
+              sh 'echo "Create config file`cat $mySecretFile > configkube`"'
+              sh './kubectl --kubeconfig ./configkube get services'
+          }          
         }
       }
     }
