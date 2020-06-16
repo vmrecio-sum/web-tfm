@@ -3,19 +3,11 @@ pipeline {
     registry = "vmreciosum/prueba_web_pipeline"
     registryCredential = 'dockerhub'
     dockerImage = ''
+    KUBECONFIG_DATA = credentials('kubeconfig')
   }
   agent any
   stages {
-    stage('Preparation') {
-      steps {
-        script {      
-          //Installing kubectl in Jenkins agent
-          sh 'curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl'
-          //sh 'chmod +x ./kubectl && mv kubectl /usr/local/sbin'
-          sh 'chmod +x ./kubectl'
-        }
-      }
-    }
+/*
     stage('Cloning Git') {
       steps {
         git branch: 'develop', url: 'https://github.com/vmrecio-sum/web-tfm.git'
@@ -37,7 +29,7 @@ pipeline {
     }
     stage('QualityGate SonarQube') {
           steps {
-              sleep(10)  /* Added 10 sec sleep that was suggested in few places*/
+              sleep(20)  
               script{
                   def tries = 0
                   sonarResultStatus = "PENDING"
@@ -77,11 +69,22 @@ pipeline {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
+*/
+    stage('Preparation Kubectl') {
+      steps {
+        script {      
+          //Installing kubectl in Jenkins agent
+          sh 'curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl'
+          //sh 'chmod +x ./kubectl && mv kubectl /usr/local/sbin'
+          sh 'chmod +x ./kubectl'
+          sh "echo $KUBECONFIG_DATA > configkube"
+        }
+      }
+    }    
     stage('Production-k8s') {
       steps {
         script {
-          withKubeConfig([credentialsId: 'kubectl-conection', serverUrl: 'https://bbce6cd5-fc52-42c2-8d06-e797084f80e7.api.k8s.fr-par.scw.cloud:6443']) {      
-          sh './kubectl get services'
+          sh './kubectl --kubeconfig .7configkube get services'
           }
         }
       }
