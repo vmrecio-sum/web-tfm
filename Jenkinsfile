@@ -11,7 +11,8 @@ pipeline {
         script {      
           //Installing kubectl in Jenkins agent
           sh 'curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl'
-          sh 'chmod +x ./kubectl && mv kubectl /usr/local/sbin'
+          //sh 'chmod +x ./kubectl && mv kubectl /usr/local/sbin'
+          sh 'chmod +x ./kubectl'
         }
       }
     }
@@ -80,7 +81,7 @@ pipeline {
       steps {
         script {
           withKubeConfig([credentialsId: 'kubectl-conection', serverUrl: 'https://bbce6cd5-fc52-42c2-8d06-e797084f80e7.api.k8s.fr-par.scw.cloud:6443']) {      
-          sh 'kubectl get services'
+          sh './kubectl get services'
           }
         }
       }
