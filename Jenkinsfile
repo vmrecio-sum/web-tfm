@@ -85,7 +85,6 @@ pipeline {
       steps {
         script {
           sh './kubectl --kubeconfig .7configkube get services'
-          }
         }
       }
     }
