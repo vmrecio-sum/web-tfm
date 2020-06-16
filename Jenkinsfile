@@ -12,7 +12,7 @@ pipeline {
         git branch: 'develop', url: 'https://github.com/vmrecio-sum/web-tfm.git'
       }
     }
-    /*
+    /*  
     stage('Code Quality Check SonarQube') {
       steps {
         script {
@@ -86,7 +86,7 @@ pipeline {
     stage('Production-k8s') {
       steps {
         script {
-          sh 'sed "s/TAGVERSION/$BUILD_NUMBER/g" /k8s/webvmrecio-createall.yaml > /k8s/webvmrecio-all.yaml'                
+          sh 'sed "s/TAGVERSION/$BUILD_NUMBER/g" k8s/webvmrecio-createall.yaml > k8s/webvmrecio-all.yaml'                
           sh './kubectl --kubeconfig ./configkube apply -f /k8s/webvmrecio-all.yaml'                
           sh './kubectl --kubeconfig ./configkube get services'        
         }
