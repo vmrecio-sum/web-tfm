@@ -12,7 +12,6 @@ pipeline {
         git branch: 'develop', url: 'https://github.com/vmrecio-sum/web-tfm.git'
       }
     }
-    /*  
     stage('Code Quality Check SonarQube') {
       steps {
         script {
@@ -48,7 +47,6 @@ pipeline {
               }
           }
       }
-      */
     stage('Building image') {
       steps{
         script {
