@@ -3,7 +3,6 @@ pipeline {
     registry = "vmreciosum/prueba_web_pipeline"
     registryCredential = 'dockerhub'
     dockerImage = ''
-    KUBECONFIG_DATA = credentials('kubeconfig')
   }
   agent any
   stages {
@@ -78,7 +77,14 @@ pipeline {
           sh 'curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl'
           //sh 'chmod +x ./kubectl && mv kubectl /usr/local/sbin'
           sh 'chmod +x ./kubectl'
-          sh "echo $KUBECONFIG_DATA > configkube"
+          sh 'echo $KUBECONFIG_DATA > configkube'
+          withCredentials([file(credentialsId: 'kubeconfig', variable: 'mySecretFile')]) {
+              // some block can be a groovy block as well and the variable will be available to the groovy script
+              sh '''
+                  echo "This is the directory of the secret file $mySecretFile"
+                  echo "This is the content of the file `cat $mySecretFile`"
+                '''
+          }
         }
       }
     }    
