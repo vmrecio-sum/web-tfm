@@ -6,6 +6,12 @@ pipeline {
   }
   agent any
   stages {
+    stage('Preparation') {
+      //Installing kubectl in Jenkins agent
+      sh 'curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl'
+      sh '  '
+
+    }
     stage('Cloning Git') {
       steps {
         git branch: 'develop', url: 'https://github.com/vmrecio-sum/web-tfm.git'
@@ -27,7 +33,7 @@ pipeline {
     }
     stage('QualityGate SonarQube') {
           steps {
-              sleep(20)  /* Added 10 sec sleep that was suggested in few places*/
+              sleep(10)  /* Added 10 sec sleep that was suggested in few places*/
               script{
                   def tries = 0
                   sonarResultStatus = "PENDING"
@@ -65,6 +71,11 @@ pipeline {
     stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $registry:$BUILD_NUMBER"
+      }
+    }
+    stage('Production-k8s') {
+      withKubeConfig([credentialsId: 'kubectl-conection', serverUrl: 'https://bbce6cd5-fc52-42c2-8d06-e797084f80e7.api.k8s.fr-par.scw.cloud:6443']) {      
+       sh 'kubectl get services'
       }
     }
   }
