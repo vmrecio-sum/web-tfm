@@ -84,7 +84,7 @@ pipeline {
     stage('Production-k8s') {
       steps {
         script {
-          sh './kubectl --kubeconfig .7configkube get services'
+          sh './kubectl --kubeconfig ./configkube get services'
         }
       }
     }
