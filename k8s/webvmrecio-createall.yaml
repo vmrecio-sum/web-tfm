@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: web-vmrecio-apache
-        image: vmreciosum/master_unir:TAGVERSION
+        image: vmreciosum/prueba_web_pipeline:TAGVERSION
         ports:
         - containerPort: 80
           protocol: TCP 
