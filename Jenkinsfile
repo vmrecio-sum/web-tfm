@@ -7,12 +7,13 @@ pipeline {
   }
   agent any
   stages {
-/*
+
     stage('Cloning Git') {
       steps {
         git branch: 'develop', url: 'https://github.com/vmrecio-sum/web-tfm.git'
       }
     }
+/*    
     stage('Code Quality Check SonarQube') {
       steps {
         script {
