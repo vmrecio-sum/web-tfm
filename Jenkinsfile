@@ -12,7 +12,7 @@ pipeline {
         git branch: 'develop', url: 'https://github.com/vmrecio-sum/web-tfm.git'
       }
     }
-/*    
+    /*
     stage('Code Quality Check SonarQube') {
       steps {
         script {
@@ -48,6 +48,7 @@ pipeline {
               }
           }
       }
+      */
     stage('Building image') {
       steps{
         script {
@@ -69,7 +70,6 @@ pipeline {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
-*/
     stage('Preparation Kubectl') {
       steps {
         script {      
@@ -77,17 +77,18 @@ pipeline {
           sh 'curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl'
           //sh 'chmod +x ./kubectl && mv kubectl /usr/local/sbin'
           sh 'chmod +x ./kubectl'
-          sh 'echo $KUBECONFIG_DATA > configkube'
+          withCredentials([file(credentialsId: 'kubeconfig', variable: 'mySecretFile')]) {
+              sh 'echo "Create config file`cat $mySecretFile > configkube`"'
+          }     
         }
       }
     }    
     stage('Production-k8s') {
       steps {
         script {
-          withCredentials([file(credentialsId: 'kubeconfig', variable: 'mySecretFile')]) {
-              sh 'echo "Create config file`cat $mySecretFile > configkube`"'
-              sh './kubectl --kubeconfig ./configkube get services'
-          }          
+          sh 'sed "s/TAGVERSION/$BUILD_NUMBER/g" /k8s/webvmrecio-createall.yaml > /k8s/webvmrecio-all.yaml'                
+          sh './kubectl --kubeconfig ./configkube apply -f /k8s/webvmrecio-all.yaml'                
+          sh './kubectl --kubeconfig ./configkube get services'        
         }
       }
     }
