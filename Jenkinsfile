@@ -87,7 +87,7 @@ pipeline {
       steps {
         script {
           sh 'sed "s/TAGVERSION/$BUILD_NUMBER/g" k8s/webvmrecio-createall.yaml > k8s/webvmrecio-all.yaml'                
-          sh './kubectl --kubeconfig ./configkube apply -f /k8s/webvmrecio-all.yaml'                
+          sh './kubectl --kubeconfig ./configkube apply -f k8s/webvmrecio-all.yaml'                
           sh './kubectl --kubeconfig ./configkube get services'        
         }
       }
