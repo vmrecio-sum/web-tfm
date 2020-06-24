@@ -20,7 +20,7 @@ spec:
         app: web-vmrecio
     spec:
       containers:
-      - name: flask
+      - name: web-vmrecio-apache
         image: vmreciosum/web_tfm:latest
         ports:
         - containerPort: 80
