@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "vmreciosum/prueba_web_pipeline"
+    registry = "vmreciosum/web_tfm_pipeline"
     registryCredential = 'dockerhub'
     dockerImage = ''
   }
@@ -9,7 +9,7 @@ pipeline {
 
     stage('Cloning Git') {
       steps {
-        git branch: 'develop', url: 'https://github.com/vmrecio-sum/web-tfm.git'
+        git branch: 'master', url: 'https://github.com/vmrecio-sum/web-tfm.git'
       }
     }
     stage('Code Quality Check SonarQube') {
