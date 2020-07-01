@@ -28,7 +28,7 @@ pipeline {
     }
     stage('QualityGate SonarQube') {
           steps {
-              sleep(25)  
+              sleep(20)  
               script{
                   def tries = 0
                   sonarResultStatus = "PENDING"
