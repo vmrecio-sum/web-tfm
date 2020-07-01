@@ -1,6 +1,6 @@
 <?php
 
-require 'PHPMailer/class.phpmailer.php';
+require 'include/PHPMailer/class.phpmailer.php';
 include('include/credenciales.php');
 ini_set('memory_limit', '256M');
 error_reporting(E_ALL);
