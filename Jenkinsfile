@@ -28,16 +28,18 @@ pipeline {
     }
     stage('QualityGate SonarQube') {
           steps {
-              sleep(20)  
+              sleep(25)  
               script{
                   def tries = 0
                   sonarResultStatus = "PENDING"
                   while ((sonarResultStatus == "PENDING" || sonarResultStatus == "IN_PROGRESS") && tries++ < 30) {
                       try {
-                          sonarResult = waitForQualityGate(webhookSecretId: 'gL3hBtRtgpVfmItA7ZEq')    
-                          sonarResultStatus = sonarResult.status
+                          timeout(time: 1, unit: 'MINUTES') {
+                            sonarResult = waitForQualityGate(webhookSecretId: 'gL3hBtRtgpVfmItA7ZEq')    
+                            sonarResultStatus = sonarResult.status
+                          }
                       } catch(ex) {
-                          echo "caught exception ${ex}"
+                          echo "caught exception ${ex}" 
                       }
                       echo "waitForQualityGate status is ${sonarResultStatus} (tries=${tries})"
                   }
