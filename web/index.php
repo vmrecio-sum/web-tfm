@@ -127,7 +127,7 @@ if( mt_rand(0,1) === 1 ) {
               
               <div class="social_nav">
                <a href="https://www.linkedin.com/in/victor-manuel-recio/" target="blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-               <!--
+               <!-- 
                <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
                <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
                <a href=""><i class="fa fa-behance" aria-hidden="true"></i></a>
