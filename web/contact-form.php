@@ -71,9 +71,7 @@ function sendmail($email, $subject, $body) {
         $mail->Username = $fromEmail;
         $mail->Password = $fromEmailPass;
         $mail->AddReplyTo($fromEmail, '');
-
         $mail->AddAddress($email);
-
         $mail->SetFrom($fromEmail, '');
         $mail->Subject = $subject;
         $mail->MsgHTML($body);
