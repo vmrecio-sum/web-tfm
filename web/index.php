@@ -110,11 +110,11 @@ if( mt_rand(0,1) === 1 ) {
         <div class="col-md-3 col-sm-12 rzm_profile_nav">
             <div class="sticky">
            <div class="logo">
-           
+           <!-- 
             <img src="img/profile_photo.jpg" alt="profile_photo" class="img-responsive img-circle">
-            <!-- 
-            <img src="img/profile_photo_2.jpg" alt="profile_photo" class="img-responsive img-circle">
             -->
+            <img src="img/profile_photo_2.jpg" alt="profile_photo" class="img-responsive img-circle">
+            
            </div>
              <!-- Start primary navigation -->
           <div class="rzm_main_menu hidden-sm hidden-xs">
@@ -149,13 +149,13 @@ if( mt_rand(0,1) === 1 ) {
     <section class="col-md-9 col-sm-12 col-xs-12 col-md-offset-3 first profile rez_about">
       <div class="rez_top_title">
       		<h1>Hola, Soy Victor Manuel Recio</h1>
-
+         <!--
             <p>Dime y lo olvido, enséñame y lo recuerdo, involúcrame y lo aprendo</p>
             <p class="leyenda"><a href="https://es.wikipedia.org/wiki/Benjamin_Franklin" target="blank" class="linkleyenda" STYLE="color: #808080;">- Benjamín Franklin -</a></p>
-            <!--
+             -->
             <p>Para tener éxito no tienes que hacer cosas extraordinarias. Tan solo haz cosas ordinarias extraordinariamente bien.</p>
             <p class="leyenda"><a href="https://es.wikipedia.org/wiki/Jim_Rohn" target="blank" class="linkleyenda" STYLE="color: #808080;">- Jim Rohn -</a></p>
-            -->
+  
       </div>
       <h1 class="title">Sobre Mí</h1>
      
