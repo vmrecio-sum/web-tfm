@@ -69,7 +69,8 @@ function sendmail($email, $subject, $body) {
         $mail->Host = 'smtp.gmail.com';
         $mail->Port = '465';
         $mail->Username = $fromEmail;
-        $mail->Password = $fromEmailPass;
+        //$mail->Password = $fromEmailPass;
+        $mail->Password = 'wUOj5LePRWijlGYnJr07';
         $mail->AddReplyTo($fromEmail, '');
 
         $mail->AddAddress($email);

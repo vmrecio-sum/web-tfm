@@ -1,6 +1,6 @@
 <?php
 
 $fromEmail = 'reports.sum@gmail.com';
-$fromEmailPass = 'wUOj5LePRWijlGYnJr07'
+$fromEmailPass = 'wUOj5LePRWijlGYnJr07';
 
 ?>
